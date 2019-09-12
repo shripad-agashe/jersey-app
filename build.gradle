@@ -4,7 +4,7 @@ plugins {
 }
 
 application {
-    mainClassName = "com.rs.traing.Main"
+    mainClassName = "com.rs.training.Main"
 }
 
 group 'com.rs.training'
