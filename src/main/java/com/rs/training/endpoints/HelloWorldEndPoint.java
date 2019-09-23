@@ -2,6 +2,7 @@ package com.rs.training.endpoints;
 
 import com.rs.training.dao.TestDao;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -14,14 +15,21 @@ import java.util.Map;
 @Path("/hello-world")
 public class HelloWorldEndPoint {
 
+  private TestDao testDao;
+
+  @Inject
+  public HelloWorldEndPoint(TestDao testDao){
+
+    this.testDao = testDao;
+  }
+
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public Response getHelloWorld(){
     Map map = new HashMap<>();
     map.put("hello","world");
-    TestDao dao = new TestDao();
     try {
-      String name = dao.getName(1);
+      String name = testDao.getName(1);
       map.put("name", name);
     } catch (SQLException e) {
       e.printStackTrace();
